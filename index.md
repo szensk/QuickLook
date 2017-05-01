@@ -19,8 +19,8 @@ Till now, QuickLook supports the preview of
 
 Hotkeys in preview window:
 
- - <kbd>Space</kbd> Show/Hide the preview window
- - <kbd>Ctrl+Wheel</kbd> Zoom in/out
+ - <kbd>Space</kbd>: Show/Hide the preview window
+ - <kbd>Ctrl+Wheel</kbd>: Zoom in/out
 
 ## Development
 
