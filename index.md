@@ -1,37 +1,30 @@
-## Welcome to GitHub Pages
+# QuickLook
 
-You can use the [editor on GitHub](https://github.com/xupefei/QuickLook/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+*This project is currently under heavy development. Always come back to see what's new.*
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<img src="http://pooi.moe/QuickLook/sample.gif" width="400">
 
-### Markdown
+## Background
+[Quick Look](https://en.wikipedia.org/wiki/Quick_Look) is among the a few features I miss from Mac OS X. It enables *very* quick preview of file by pressing <kbd>Space</kbd> key while highlighting it, without opening its associated application. Then I decide to add this feature to Windows by myself, which results this “QuickLook” project.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+You may ask, why you write this when there several alternatives available on the Internet (e.g. [WinQuickLook](https://github.com/shibayan/WinQuickLook) and [Seer](https://github.com/ccseer/Seer))? The answer is that, they are all among those which no longer actively developed, lack of support of file types and plugins, or asking user for amounts of $$$.
 
-```markdown
-Syntax highlighted code block
+## Features
+Till now, QuickLook supports the preview of 
 
-# Header 1
-## Header 2
-### Header 3
+ - Images: e.g. `.png`, `.jpg`, `.bmp` and `.gif`
+ - Compressed archives: `.zip`, `.rar`, `.7z` etc.
+ - Pdf file
+ - All kinds of text files (determined by file content)
+ - Microsoft Word (`.doc`, `.docx`), Excel (`.xls`, `.xlsx`) and PowerPoint (`.ppt`, `.pptx`) files (requires MS Office installation)
+ - Other files and folders will be shown in a information box
 
-- Bulleted
-- List
+Hotkeys in preview window:
 
-1. Numbered
-2. List
+ - <kbd>Space</kbd> Show/Hide the preview window
+ - <kbd>Ctrl+Wheel</kbd> Zoom in/out
 
-**Bold** and _Italic_ and `Code` text
+## Development
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/xupefei/QuickLook/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+The previewing ability can be extended by new plugins. Read the  [plugin interface](https://github.com/xupefei/QuickLook/blob/master/QuickLook/Plugin/IViewer.cs), [context object](https://github.com/xupefei/QuickLook/blob/master/QuickLook/Plugin/ContextObject.cs) for more information. [Pre-shipped plugins](https://github.com/xupefei/QuickLook/tree/master/QuickLook.Plugin) contains more detailed implementation.
+Note that any plugin must be under the `QuickLook.Plugin` namespace, has the filename similar to `QuickLook.Plugin.YourPlugin.dll` and placed under `<Application>\Plugins\QuickLook.Plugin.YourPlugin\` subfolder.
