@@ -1,6 +1,6 @@
 *This project is currently under heavy development. Always come back to see what's new.*
 
-<img src="http://pooi.moe/QuickLook/sample.gif" width="400">
+<img src="http://pooi.moe/QuickLook/sample.gif" width="600">
 
 ## Background
 [Quick Look](https://en.wikipedia.org/wiki/Quick_Look) is among the a few features I miss from Mac OS X. It enables *very* quick preview of file by pressing <kbd>Space</kbd> key while highlighting it, without opening its associated application. Then I decide to add this feature to Windows by myself, which results this “QuickLook” project.
