@@ -1,3 +1,7 @@
+![QuickLook icon](https://cloud.githubusercontent.com/assets/1687847/26008086/060d9cca-374c-11e7-9345-7f0f0f91a421.png)
+
+# QuickLook
+
 [![Build status](https://ci.appveyor.com/api/projects/status/w5lx1mlq8b0mb8fo?svg=true)](https://ci.appveyor.com/project/xupefei/quicklook)
 
 *This project is currently under heavy development. Always come back to see what's new.*
@@ -18,6 +22,8 @@ Till now, QuickLook supports the preview of
  - All kinds of text files (determined by file content)
  - Microsoft Word (`.doc`, `.docx`), Excel (`.xls`, `.xlsx`) and PowerPoint (`.ppt`, `.pptx`) files (requires MS Office installation)
  - Video files (`.mp4`, `.mkv`, `.m2ts` etc.)
+ - HTML files (`.htm`, `.html`)
+ - Markdown file (`.md`)
  - Other files and folders will be shown in a information box
 
 ## Usages
