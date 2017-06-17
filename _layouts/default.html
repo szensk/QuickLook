@@ -8,8 +8,41 @@
     <meta name="theme-color" content="#157878">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <style>
+      .nav ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+      }
+
+      .nav li {
+          float: left;
+      }
+      .nav .active {
+          background-color: #4CAF50;
+      }
+      .nav li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+      }
+
+      .nav li a:hover {
+          background-color: #111;
+      }
+</style>
   </head>
   <body>
+    <section class="nav">
+      <ul>
+        <li><a class="active" href="#">QuickLook</a></li>
+        <li><a href="/Locale-Emulator/">Locale Emulator</a></li>
+      </ul>
+    </section>
     <section class="page-header">
       <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
