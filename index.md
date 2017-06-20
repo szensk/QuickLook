@@ -22,7 +22,6 @@ You may ask, why you write this when there several alternatives available on the
 ✅ Preview from Open and Save File Dialog
 ✅ Preview from 3rd-party file managers
 ✅ Easy extended by plugins 
-
 ✅ Strict GPL license to keep it free forever
 
 ## Usage
