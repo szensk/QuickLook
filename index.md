@@ -14,19 +14,16 @@ You may ask, why you write this when there several alternatives available on the
 
 ## Highlights
 
-✅ Instant preview
-✅ Beautiful UI
-✅ Perfect HiDPI support
-✅ Native 64-bit application
-
-✅ Preview from Open and Save File Dialog
-✅ Preview from 3rd-party file managers
-✅ Easy extended by plugins 
-✅ Strict GPL license to keep it free forever
+ - HiDPI support
+ - Native 64-bit application
+ - Preview from Open and Save File Dialog
+ - Preview from 3rd-party file managers (see a list [here](https://github.com/xupefei/QuickLook/wiki/File-Managers))
+ - Easy extended by plugins 
+ - Strict GPL license to keep it free forever
 
 ## Usage
 
-### General usage
+### Download / General usage
 
  1. Download either installer or portable archive from **[GitHub Release](https://github.com/xupefei/QuickLook/releases)(stable)** or [AppVeyor](https://ci.appveyor.com/project/xupefei/quicklook/build/artifacts)(unstable) page
  2. Run `QuickLook.exe`
@@ -35,7 +32,7 @@ You may ask, why you write this when there several alternatives available on the
  5. Select another file/folder in the same manner
  6. When you're done, click on the `❎` button, or press <kbd>Spacebar</kbd> again
 
-### Hotkeys
+### Hotkeys and buttons
 
  - <kbd>Spacebar</kbd> Show/Hide the preview window
  - <kbd>Esc</kbd> Hide the preview window
@@ -43,13 +40,13 @@ You may ask, why you write this when there several alternatives available on the
  - <kbd>Mouse️</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> Preview another file
  - <kbd>Ctrl-Wheel</kbd> Zoom in/out images
 
-## More Information: supported file types etc.
+## More Information
 
 See the [Wiki page](https://github.com/xupefei/QuickLook/wiki).
 
 ## Translations
 
-If you would like to translate QuickLook to your language, feel free to modify [these files](https://github.com/xupefei/QuickLook/search?utf8=%E2%9C%93&q=filename%3ATranslations.lang) and then send me a pull request. Thank you for the effort.
+If you would like to translate QuickLook to your language, feel free to modify [these files](https://github.com/xupefei/QuickLook/search?utf8=%E2%9C%93&q=filename%3ATranslations.config) and then send me a pull request. Thank you for the effort.
 
 ## Licenses
 
@@ -62,4 +59,3 @@ This project references many other projects. See [here](https://github.com/xupef
 All source codes, except which are from other projects mentioned above, are licensed under [GPL-3.0](https://opensource.org/licenses/GPL-3.0).
 
 If you want make any modification on these source codes while keeping new codes not protected by GPL-3.0, please contact me for a sublicense instead.
-
