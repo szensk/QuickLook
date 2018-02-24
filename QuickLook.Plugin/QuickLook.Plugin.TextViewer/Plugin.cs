@@ -15,8 +15,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.IO;
+using System.Reflection;
 using System.Windows;
+using System.Xml;
+using System.Xml.Linq;
 using ICSharpCode.AvalonEdit.Highlighting;
 using QuickLook.Common.Plugin;
 
@@ -28,8 +32,44 @@ namespace QuickLook.Plugin.TextViewer
 
         public int Priority => 0;
 
+        private static Func<IHighlightingDefinition> LoadHighlightingFile(string resourceName, HighlightingManager hlm)
+        {
+            Func<IHighlightingDefinition> func = delegate {
+                ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdSyntaxDefinition xshd;
+                using (Stream s = File.OpenRead(resourceName))
+                {
+                    using (XmlTextReader reader = new XmlTextReader(s))
+                    {
+                        xshd = ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader.LoadXshd(reader);
+                    }
+                }
+                return ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader.Load(xshd, hlm);
+            };
+            return func;
+        }
+
         public void Init()
         {
+            HighlightingManager hlm = HighlightingManager.Instance;
+
+            string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            if (string.IsNullOrEmpty(assemblyPath)) return;
+
+            string syntaxPath = Path.Combine(assemblyPath, "Syntax");
+            if (!Directory.Exists(syntaxPath)) return;
+
+            foreach (string file in Directory.EnumerateFiles(syntaxPath, "*.xshd"))
+            {
+                string lang = Path.GetFileNameWithoutExtension(file);
+                FileInfo fileInfo = new FileInfo(file);
+                XElement xml = XElement.Load(file);
+                XAttribute extensionsAttribute = xml.Attribute("extensions");
+                string[] extensions = extensionsAttribute?.Value.Split(';');
+                if (extensions?.Length > 0)
+                {
+                    hlm.RegisterHighlighting(lang, extensions, LoadHighlightingFile(fileInfo.FullName, hlm));
+                }
+            }
         }
 
         public bool CanHandle(string path)
