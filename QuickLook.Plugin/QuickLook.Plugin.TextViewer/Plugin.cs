@@ -17,11 +17,12 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Xml;
-using System.Xml.Linq;
 using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using QuickLook.Common.Plugin;
 
 namespace QuickLook.Plugin.TextViewer
@@ -31,22 +32,6 @@ namespace QuickLook.Plugin.TextViewer
         private TextViewerPanel _tvp;
 
         public int Priority => 0;
-
-        private static Func<IHighlightingDefinition> LoadHighlightingFile(string resourceName, HighlightingManager hlm)
-        {
-            Func<IHighlightingDefinition> func = delegate {
-                ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdSyntaxDefinition xshd;
-                using (Stream s = File.OpenRead(resourceName))
-                {
-                    using (XmlTextReader reader = new XmlTextReader(s))
-                    {
-                        xshd = ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader.LoadXshd(reader);
-                    }
-                }
-                return ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader.Load(xshd, hlm);
-            };
-            return func;
-        }
 
         public void Init()
         {
@@ -61,13 +46,21 @@ namespace QuickLook.Plugin.TextViewer
             foreach (string file in Directory.EnumerateFiles(syntaxPath, "*.xshd"))
             {
                 string lang = Path.GetFileNameWithoutExtension(file);
-                FileInfo fileInfo = new FileInfo(file);
-                XElement xml = XElement.Load(file);
-                XAttribute extensionsAttribute = xml.Attribute("extensions");
-                string[] extensions = extensionsAttribute?.Value.Split(';');
-                if (extensions?.Length > 0)
+                File.AppendAllText(Path.Combine(assemblyPath, "log.txt"), $"Loading definition {file}\r\n");
+                try
                 {
-                    hlm.RegisterHighlighting(lang, extensions, LoadHighlightingFile(fileInfo.FullName, hlm));
+                    using (Stream s = File.OpenRead(Path.GetFullPath(file)))
+                    using (XmlTextReader reader = new XmlTextReader(s))
+                    {
+                            XshdSyntaxDefinition xshd = HighlightingLoader.LoadXshd(reader);
+                            IHighlightingDefinition highlightingDefinition = HighlightingLoader.Load(xshd, hlm);
+                            if (xshd.Extensions.Count > 0) 
+                                hlm.RegisterHighlighting(lang, xshd.Extensions.ToArray(), highlightingDefinition);
+                    }
+                }
+                catch (Exception e)
+                {
+                    File.AppendAllText(Path.Combine(assemblyPath, "log.txt"), $"Error: {e.Message}\r\n{e.StackTrace}\r\n");
                 }
             }
         }
